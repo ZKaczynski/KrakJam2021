@@ -1,22 +1,14 @@
 ﻿using UnityEngine;
 
-
-public class PlayerController : MonoBehaviour{
-    [SerializeField] private float speed = 2;
-
-
-     private Quaternion lookRotation;
-     private Vector3 direction;
-
-    void Update() 
-
 namespace Player
 {
-    public class PlayerController : SceneObject
-
-    {
-        [SerializeField] private float speed = 10;
-
+    public class PlayerController : MonoBehaviour{
+        
+        [SerializeField] private float speed = 2;
+        
+        private Quaternion lookRotation;
+        private Vector3 direction;
+        
         void Update() 
         {
             float inputX = Input.GetAxis("Horizontal");
@@ -30,6 +22,5 @@ namespace Player
             transform.Translate(movement);
         }
     }
-
 }
 
