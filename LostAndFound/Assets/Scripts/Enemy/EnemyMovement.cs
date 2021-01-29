@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 
-    bool inChase = false;
+    bool inLight = false;
     [SerializeField]
     private float speed = 0.5f;
 
@@ -22,7 +22,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target != null)
+        if (target != null && inLight == false)
         {
 
 
@@ -36,12 +36,13 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
-            Debug.Log("coll");
-
-            target = other.transform.position;
-        
+        inLight = true;
+        target = other.transform.position;
     }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        inLight = false;
+    }
 
 }
