@@ -11,15 +11,12 @@ public class EnemyMovement : MonoBehaviour
 
     private Vector2 target;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
-        
+        target = transform.position;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (target != null && inLight == false)
@@ -37,11 +34,12 @@ public class EnemyMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         inLight = true;
-        target = other.transform.position;
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        target = other.transform.position;
         inLight = false;
     }
 

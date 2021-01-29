@@ -9,8 +9,7 @@ namespace Player
         private Quaternion lookRotation;
         private Vector3 direction;
         
-        void Update() 
-        {
+        void Update(){
             float inputX = Input.GetAxis("Horizontal");
             float inputY = Input.GetAxis("Vertical");
 
@@ -18,9 +17,20 @@ namespace Player
 
             movement *= Time.deltaTime;
 
-
             transform.Translate(movement);
         }
+
+        void OnCollisionEnter2D(Collision2D collision) {
+
+
+            if (collision.gameObject.CompareTag("Enemy"))
+                {
+                    Debug.Log("death!!");
+                }
+                
+  
+        }
+
     }
 }
 
