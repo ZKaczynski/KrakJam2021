@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class SceneObject : MonoBehaviour
+public class SceneObject : MonoBehaviour
 {
     private GameMaster _gameMaster;
     

@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour{
-    [SerializeField] private float speed = 10;
-
-    void Update() 
+namespace Player
+{
+    public class PlayerController : SceneObject
     {
-        float inputX = Input.GetAxis("Horizontal");
-        float inputY = Input.GetAxis("Vertical");
+        [SerializeField] private float speed = 10;
 
-        Vector3 movement = new Vector3(speed * inputX, speed * inputY,0);
+        void Update() 
+        {
+            float inputX = Input.GetAxis("Horizontal");
+            float inputY = Input.GetAxis("Vertical");
 
-        movement *= Time.deltaTime;
+            Vector3 movement = new Vector3(speed * inputX, speed * inputY,0);
 
-        transform.Translate(movement);
+            movement *= Time.deltaTime;
+
+            transform.Translate(movement);
+        }
     }
 }
