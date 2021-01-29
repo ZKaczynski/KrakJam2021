@@ -8,14 +8,13 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="GameMaster.cs" t="Include" />
-          <e p="General" t="Include">
-            <e p="FollowCursorBehaviour.cs" t="Include" />
-          </e>
           <e p="Player" t="Include">
             <e p="PlayerController.cs" t="Include" />
+            <e p="PlayerRotation.cs" t="Include" />
           </e>
           <e p="SceneObject.cs" t="Include" />
           <e p="Utils" t="Include">
+            <e p="TransformMarginScalerBehaviour.cs" t="Include" />
             <e p="TransformUtils.cs" t="Include" />
           </e>
         </e>
