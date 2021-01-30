@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5980349491223990450}
   - component: {fileID: 897964414961488714}
   - component: {fileID: 4472587694342385501}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,6 +217,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shadow
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843081450687235990, guid: f6e2a1c3007076d4b9b8e840d7b932b5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7918937717933531140, guid: f6e2a1c3007076d4b9b8e840d7b932b5,
         type: 3}

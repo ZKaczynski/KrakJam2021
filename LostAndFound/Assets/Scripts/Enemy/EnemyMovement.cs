@@ -7,6 +7,7 @@ namespace Enemy
     public class EnemyMovement : SceneObject
     {
         [SerializeField] private float speed = 0.5f;
+        [SerializeField] private LayerMask layerMask;
 
         public bool InLight { get; private set; }
         
@@ -38,12 +39,12 @@ namespace Enemy
         {
             if (other.gameObject.name.Contains("Light"))
             { 
-                //  RaycastHit2D hit = Physics2D.Raycast(transform.position, other.gameObject.transform.position);
+                  RaycastHit2D hit = Physics2D.Raycast(transform.position, other.gameObject.transform.position, float.MaxValue,layerMask);
 
-                //  if (hit.collider == null)
-                // //  {
+                  if (hit.collider == null)
+                  {
                 InLight = true; 
-                //  }
+                 }
             }
         }
 
