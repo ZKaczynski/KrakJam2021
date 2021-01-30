@@ -1,5 +1,6 @@
 ﻿
 using Levels;
+using Player;
 using UnityEngine;
 
 public class GameMaster : MonoBehaviour
