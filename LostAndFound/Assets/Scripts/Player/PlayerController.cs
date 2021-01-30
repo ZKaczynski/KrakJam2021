@@ -8,8 +8,8 @@ namespace Player
 {
     public class PlayerController : SceneObject
     {
-
         [SerializeField] private float speed = 2;
+        [SerializeField] private Transform playerTransform;
 
         private Quaternion lookRotation;
         private Vector3 direction;
@@ -38,7 +38,7 @@ namespace Player
 
             movement *= Time.deltaTime;
 
-            transform.Translate(movement);
+            playerTransform.Translate(movement);
         }
 
         private void InteractWithInteractablesInRange()
