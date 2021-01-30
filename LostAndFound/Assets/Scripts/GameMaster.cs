@@ -12,7 +12,18 @@ public class GameMaster : MonoBehaviour
     [SerializeField] private bool skipMenu = true;
     [SerializeField] private bool canTrapsKillEnemies = true;
 
-    public static GameMaster Instance => GameObject.Find("GameMaster").GetComponent<GameMaster>();
+    public static GameMaster instance;
+    public static GameMaster Instance
+    {
+        get
+        {
+            if (instance != null)
+            {
+                return instance;
+            }
+            return instance = GameObject.Find(nameof(GameMaster)).GetComponent<GameMaster>();
+        }
+    }
 
     public bool IsGameFinished { get; private set; } = false;
     public bool IsLevelFinished { get; private set; } = false;
