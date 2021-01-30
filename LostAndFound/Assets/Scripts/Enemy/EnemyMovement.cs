@@ -37,18 +37,26 @@ namespace Enemy
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            EnterLight(other);
+        }
+
+        private void EnterLight(Collider2D other)
+        {
             if (other.gameObject.name.Contains("Light"))
             {
+
+                print("Hit by light!");
                 float distance = Vector2.Distance(transform.position, other.gameObject.transform.position);
 
-                  RaycastHit2D hit = Physics2D.Raycast(other.gameObject.transform.position, transform.position, distance,layerMask);
+                RaycastHit2D hit = Physics2D.Raycast(other.gameObject.transform.position, transform.position, distance, layerMask);
 
-                    Debug.DrawRay(transform.position, other.gameObject.transform.position);
+                Debug.DrawRay(transform.position, other.gameObject.transform.position, Color.red);
 
                 if (hit.collider == null)
-                  {
-                InLight = true; 
-                 }
+                {
+                    InLight = true;
+                    print("LIGHT CENTER!");
+                }
             }
         }
 
@@ -61,13 +69,17 @@ namespace Enemy
                 {
                     Die();
                 }
-            }        
+            }
+            EnterLight(other);
+
+
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject.name.Contains("Light"))
             {
+                print("Dark!!");
                 float distance = Vector2.Distance(transform.position, other.gameObject.transform.position);
 
                 RaycastHit2D hit = Physics2D.Raycast(other.gameObject.transform.position,transform.position, distance, layerMask);
@@ -76,6 +88,7 @@ namespace Enemy
 
                 if (hit.collider == null)
                 {
+                    print("DarkCENTER!!");
                     target = other.transform.position;
                     InLight = false;
                 }
