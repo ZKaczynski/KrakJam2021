@@ -9,11 +9,6 @@ public class UIController : SceneObject
     [SerializeField] private GameObject defeatScreen;
     [SerializeField] private GameObject mainMenuScreen;
 
-    private void Start()
-    {
-        OpenMainMenu();
-    }
-
     public void OpenDefeatScreen()
     {
         defeatScreen.SetActive(true);
