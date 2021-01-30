@@ -33,14 +33,31 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        inLight = true;
+
+      //  RaycastHit2D hit = Physics2D.Raycast(transform.position, other.gameObject.transform.position);
+
+      //  if (hit.collider == null)
+      //  {
+            inLight = true;
+      //  }
+
+        
         
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        target = other.transform.position;
-        inLight = false;
+
+       // RaycastHit2D hit = Physics2D.Raycast(transform.position, other.gameObject.transform.position);
+       // Debug.Log(hit)
+
+        //if (hit.collider == null)
+       // {
+
+            target = other.transform.position;
+            inLight = false;
+
+       // }
     }
 
 }
