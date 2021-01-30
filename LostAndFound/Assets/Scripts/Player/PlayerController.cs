@@ -134,6 +134,12 @@ namespace Player
                 GameMaster.OnGameFinished();
             }
         }
+
+        void Throw()
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        }
     }
 }
 
