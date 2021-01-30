@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
@@ -15,11 +14,6 @@ public class Flare : MonoBehaviour
         light2D = GetComponent<Light2D>();
         StartCoroutine(FlareLife());
         StartCoroutine(Flicker());
-    }
-
-    void Update()
-    {
-
     }
 
     IEnumerator Flicker()
