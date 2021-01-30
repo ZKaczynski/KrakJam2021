@@ -159,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defeatScreen: {fileID: 7937206680200814311}
   mainMenuScreen: {fileID: 4797249129132003472}
+  currentScreen: {fileID: 0}
 --- !u!1001 &1959410773259871439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -166,6 +167,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8107174102428891962}
     m_Modifications:
+    - target: {fileID: 326574367210300543, guid: 0d36d19c1d125e34ebf87c546263b824,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 8107174102428891961}
     - target: {fileID: 908267011444556953, guid: 0d36d19c1d125e34ebf87c546263b824,
         type: 3}
       propertyPath: m_AnchoredPosition.x

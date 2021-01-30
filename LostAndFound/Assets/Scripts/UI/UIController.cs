@@ -14,24 +14,14 @@ public class UIController : SceneObject
         OpenMainMenu();
     }
 
-    private void Update()
+    public void OpenDefeatScreen()
     {
-        if (GameMaster.IsGameFinished)
-        {
-            OpenDefeatScreen();
-        }
-    }
-
-    private void OpenDefeatScreen()
-    {
-        Time.timeScale = 0;
         defeatScreen.SetActive(true);
         mainMenuScreen.SetActive(false);
     }
 
-    private void OpenMainMenu()
+    public void OpenMainMenu()
     {
-        Time.timeScale = 0;
         defeatScreen.SetActive(false);
         mainMenuScreen.SetActive(true);
     }
