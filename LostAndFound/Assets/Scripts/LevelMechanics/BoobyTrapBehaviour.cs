@@ -11,13 +11,12 @@ namespace LevelMechanics
         [SerializeField] private SpriteRenderer spriteRenderer;
         
         public bool IsEngaged { get; set; }
-        
 
         private void Start()
         {
             if (levers == null || levers.Count == 0)
             {
-                IsEngaged = true;
+                Engage(true);
                 return;
             }
             

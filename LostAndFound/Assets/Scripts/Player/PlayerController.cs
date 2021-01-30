@@ -67,11 +67,9 @@ namespace Player
             {
                 interactablesInRange.Add(lever);
             }
-
-
         }
 
-        private void OnTriggerStay(Collider other)
+        private void OnTriggerStay2D(Collider2D other)
         {
             var boobyTrap = other.gameObject.GetComponent<BoobyTrapBehaviour>();
             if(boobyTrap != null && boobyTrap.IsEngaged)
@@ -92,7 +90,10 @@ namespace Player
 
         private void Die()
         {
-            gameMaster.OnPlayerDied();
+            if (gameMaster.IsGameFinished != true)
+            {
+                gameMaster.OnPlayerDied();
+            }
         }
     }
 }
