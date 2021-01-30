@@ -95,10 +95,15 @@ namespace Player
             }
 
             var pickUp = other.gameObject.GetComponent<PickUpBehaviour>();
-
             if (pickUp != null && interactablesInRange.Contains(pickUp) == false)
             {
                 interactablesInRange.Add(pickUp);
+            }
+            
+            var tripWire = other.gameObject.GetComponent<TripwireBehaviour>();
+            if (tripWire != null && interactablesInRange.Contains(tripWire) == false)
+            {
+                interactablesInRange.Add(tripWire);
             }
         }
 
@@ -124,6 +129,12 @@ namespace Player
             if (pickUp != null)
             {
                 interactablesInRange.Remove(pickUp);
+            }
+            
+            var tripWire = other.gameObject.GetComponent<TripwireBehaviour>();
+            if (tripWire != null)
+            {
+                interactablesInRange.Remove(tripWire);
             }
         }
 

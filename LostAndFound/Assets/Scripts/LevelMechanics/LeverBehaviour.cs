@@ -1,12 +1,13 @@
 ﻿using System;
 using General;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace LevelMechanics
 {
     public class LeverBehaviour : SceneObject, IInteractable
     {
-        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] [CanBeNull] private SpriteRenderer spriteRenderer;
         [SerializeField] private bool startPulled;
 
         public event Action<LeverBehaviour> LeverStateChangedEvent;
@@ -37,7 +38,10 @@ namespace LevelMechanics
         private void Setup(bool state)
         {
             IsPulled = state;
-            spriteRenderer.color = IsPulled ? Color.green : Color.yellow;
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = IsPulled ? Color.green : Color.yellow;
+            }
         }
 
         private void OnLeverStateChangedEvent()
