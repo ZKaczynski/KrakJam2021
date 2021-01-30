@@ -38,10 +38,14 @@ namespace Enemy
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.name.Contains("Light"))
-            { 
-                  RaycastHit2D hit = Physics2D.Raycast(transform.position, other.gameObject.transform.position, float.MaxValue,layerMask);
+            {
+                float distance = Vector2.Distance(transform.position, other.gameObject.transform.position);
 
-                  if (hit.collider == null)
+                  RaycastHit2D hit = Physics2D.Raycast(other.gameObject.transform.position, transform.position, distance,layerMask);
+
+                    Debug.DrawRay(transform.position, other.gameObject.transform.position);
+
+                if (hit.collider == null)
                   {
                 InLight = true; 
                  }
@@ -64,16 +68,18 @@ namespace Enemy
         {
             if (other.gameObject.name.Contains("Light"))
             {
-                // RaycastHit2D hit = Physics2D.Raycast(transform.position, other.gameObject.transform.position);
-                // Debug.Log(hit)
+                float distance = Vector2.Distance(transform.position, other.gameObject.transform.position);
 
-                //if (hit.collider == null)
-                // {
+                RaycastHit2D hit = Physics2D.Raycast(other.gameObject.transform.position,transform.position, distance, layerMask);
 
-                target = other.transform.position;
-                InLight = false;
+                Debug.DrawRay(transform.position, other.gameObject.transform.position);
 
-                // }
+                if (hit.collider == null)
+                {
+                    target = other.transform.position;
+                    InLight = false;
+                }
+
             }
         }
 
