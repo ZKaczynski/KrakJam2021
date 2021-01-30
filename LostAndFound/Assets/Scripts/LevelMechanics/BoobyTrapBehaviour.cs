@@ -11,18 +11,15 @@ namespace LevelMechanics
         [SerializeField] private SpriteRenderer spriteRenderer;
         
         public bool IsEngaged { get; set; }
+        
 
         private void Start()
         {
             if (levers == null || levers.Count == 0)
             {
                 IsEngaged = true;
+                return;
             }
-            else
-            {
-                IsEngaged = levers.All(lever => lever.IsPulled);
-            }
-            Engage(IsEngaged);
             
             foreach (var lever in levers)
             {
@@ -34,6 +31,8 @@ namespace LevelMechanics
                 lever.LeverStateChangedEvent -= OnLeverStateChangedEvent;
                 lever.LeverStateChangedEvent += OnLeverStateChangedEvent;
             }
+            
+            Engage(ShouldEngage());
         }
 
         private void OnLeverStateChangedEvent(LeverBehaviour lever)

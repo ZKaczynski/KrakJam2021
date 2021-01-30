@@ -33,6 +33,8 @@ namespace LevelMechanics
                 lever.LeverStateChangedEvent -= OnLeverStateChangedEvent;
                 lever.LeverStateChangedEvent += OnLeverStateChangedEvent;
             }
+
+            Open(ShouldOpen());
         }
 
         private void  OnLeverStateChangedEvent(LeverBehaviour lever)

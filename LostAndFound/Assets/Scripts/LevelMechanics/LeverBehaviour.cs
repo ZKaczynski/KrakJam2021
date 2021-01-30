@@ -13,9 +13,14 @@ namespace LevelMechanics
 
         public bool IsPulled { get; private set; }
 
+        private void Awake()
+        {
+            IsPulled = startPulled;
+        }
+
         private void Start()
         {
-            Setup(startPulled);
+            Setup(IsPulled);
         }
 
         public void Interact()
