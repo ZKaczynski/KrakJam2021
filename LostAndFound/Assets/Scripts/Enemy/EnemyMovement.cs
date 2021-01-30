@@ -77,7 +77,7 @@ namespace Enemy
                     Die();
                 }
             }
-            HasEnteredLight(other);
+            
 
 
         }
