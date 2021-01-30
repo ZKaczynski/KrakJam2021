@@ -9,13 +9,14 @@ namespace Player
     public class PlayerController : SceneObject
     {
         [SerializeField] private float speed = 2;
-        [SerializeField] private Transform playerTransform;
+        [SerializeField] private Animator animator;
 
         private Quaternion lookRotation;
         private Vector3 direction;
         private HashSet<IInteractable> interactablesInRange = new HashSet<IInteractable>();
 
         private Inventory inventory;
+        private static readonly int IsMoving = Animator.StringToHash("IsMoving");
 
         void Start()
         {
@@ -60,9 +61,11 @@ namespace Player
         {
             Vector3 movement = new Vector3(speed * inputX, speed * inputY, 0);
 
+            animator.SetBool(IsMoving, movement.magnitude >= float.Epsilon);
+            
             movement *= Time.deltaTime;
 
-            playerTransform.Translate(movement);
+            transform.Translate(movement);
         }
 
         private void InteractWithInteractablesInRange()
