@@ -8,17 +8,18 @@ namespace Enemy
     {
         [SerializeField] private float speed = 0.5f;
         [SerializeField] private LayerMask layerMask;
-
-
         [SerializeField] public bool InLight;
 
-        [SerializeField] private EnemyTarget target;
-        [SerializeField] private Vector2 lastPosition;
+        private Transform target;
+        private Vector3? lastPosition;
+        private bool lastPositionHasMeaningfulValue;
+
+        private bool ShouldMove => target != null || lastPosition.HasValue;
+        private bool CanMove => InLight == false;
 
         void Start()
         {
             InLight = false;
-            lastPosition = transform.position;
             target = null;
         }
 
@@ -29,16 +30,30 @@ namespace Enemy
                 return;
             }
             
-            if (target != null && InLight == false)
+            if (ShouldMove && CanMove)
             {
+                if (target != null && HasLineOfSight(target, Color.clear))
+                {
+                    lastPosition = target.position;
+                }
+                else
+                {
+                    target = null;
+                }
 
-
-
-                float step = speed * Time.deltaTime;
-                transform.position = Vector2.MoveTowards(transform.position, lastPosition, step);
+                if (lastPosition.HasValue)
+                {
+                    float step = speed * Time.deltaTime;
+                    transform.position = Vector2.MoveTowards(transform.position, lastPosition.Value, step);
+                    
+                    if (Vector2.Distance(lastPosition.Value, transform.position) <= float.Epsilon)
+                    {
+                        lastPosition = null;
+                    }
+                }
             }
         }
-
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             HasEnteredLight(other);
@@ -50,19 +65,10 @@ namespace Enemy
 
             if (potentialTarget != null)
             {
-
-                float distance = Vector2.Distance(transform.position, potentialTarget.getTarget().position);
-                
-
-                RaycastHit2D hit = Physics2D.Raycast(potentialTarget.getTarget().position, transform.position, distance, layerMask);
-
-                Debug.DrawRay(transform.position, potentialTarget.getTarget().position, Color.red);
-
-                if (hit.collider == null)
+                if (HasLineOfSight(potentialTarget.getTarget(), Color.red))
                 {
                     InLight = true;
-                    target = potentialTarget;
-                    print("LIGHT CENTER!");
+                    target = potentialTarget.getTarget();
                 }
             }
         }
@@ -77,9 +83,6 @@ namespace Enemy
                     Die();
                 }
             }
-            
-
-
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -88,21 +91,25 @@ namespace Enemy
 
             if (potentialTarget != null)
             {
-                print("Dark!!");
-                float distance = Vector2.Distance(transform.position, potentialTarget.getTarget().position);
-
-                RaycastHit2D hit = Physics2D.Raycast(potentialTarget.getTarget().position, transform.position, distance, layerMask);
-
-                Debug.DrawRay(transform.position, other.gameObject.transform.position);
-
-                if (hit.collider == null)
+                if (HasLineOfSight(potentialTarget.getTarget(), Color.green))
                 {
-                    print("DarkCENTER!!");
-                    lastPosition = potentialTarget.getTarget().position;
+                    target = potentialTarget.getTarget();
                     InLight = false;
                 }
-
             }
+        }
+
+        private bool HasLineOfSight(Transform other, Color colorOfGizmos)
+        {
+            Vector3 enemyPosition = transform.position;
+            Vector3 targetPosition = other.position;
+
+            float distance = Vector2.Distance(enemyPosition, targetPosition);
+            RaycastHit2D hit = Physics2D.Raycast(enemyPosition, targetPosition - enemyPosition, distance, layerMask);
+
+            Debug.DrawRay(enemyPosition, targetPosition - enemyPosition, colorOfGizmos);
+
+            return hit.collider == null;
         }
 
         private void Die()
