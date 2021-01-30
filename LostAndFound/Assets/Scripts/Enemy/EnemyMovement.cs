@@ -1,5 +1,4 @@
-﻿using System;
-using LevelMechanics;
+﻿using LevelMechanics;
 using UnityEngine;
 
 namespace Enemy
@@ -36,10 +35,6 @@ namespace Enemy
                 {
                     lastPosition = target.position;
                 }
-                else
-                {
-                    target = null;
-                }
 
                 if (lastPosition.HasValue)
                 {
@@ -49,6 +44,7 @@ namespace Enemy
                     if (Vector2.Distance(lastPosition.Value, transform.position) <= float.Epsilon)
                     {
                         lastPosition = null;
+                        target = null;
                     }
                 }
             }
