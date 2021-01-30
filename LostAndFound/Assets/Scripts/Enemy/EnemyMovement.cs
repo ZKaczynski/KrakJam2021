@@ -9,13 +9,17 @@ namespace Enemy
         [SerializeField] private float speed = 0.5f;
         [SerializeField] private LayerMask layerMask;
 
-        public bool InLight { get; private set; }
-        
-        private Vector2 target;
+
+        [SerializeField] public bool InLight;
+
+        [SerializeField] private EnemyTarget target;
+        [SerializeField] private Vector2 lastPosition;
 
         void Start()
         {
-            target = transform.position;
+            InLight = false;
+            lastPosition = transform.position;
+            target = null;
         }
 
         void Update()
@@ -29,32 +33,35 @@ namespace Enemy
             {
 
 
-                float step = speed * Time.deltaTime;
 
-                transform.position = Vector2.MoveTowards(transform.position, target, step);
+                float step = speed * Time.deltaTime;
+                transform.position = Vector2.MoveTowards(transform.position, lastPosition, step);
             }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            EnterLight(other);
+            HasEnteredLight(other);
         }
 
-        private void EnterLight(Collider2D other)
+        private void HasEnteredLight(Collider2D other)
         {
-            if (other.gameObject.name.Contains("Light"))
+            EnemyTarget potentialTarget = other.gameObject.GetComponent<EnemyTarget>();
+
+            if (potentialTarget != null)
             {
 
-                print("Hit by light!");
-                float distance = Vector2.Distance(transform.position, other.gameObject.transform.position);
+                float distance = Vector2.Distance(transform.position, potentialTarget.getTarget().position);
+                
 
-                RaycastHit2D hit = Physics2D.Raycast(other.gameObject.transform.position, transform.position, distance, layerMask);
+                RaycastHit2D hit = Physics2D.Raycast(potentialTarget.getTarget().position, transform.position, distance, layerMask);
 
-                Debug.DrawRay(transform.position, other.gameObject.transform.position, Color.red);
+                Debug.DrawRay(transform.position, potentialTarget.getTarget().position, Color.red);
 
                 if (hit.collider == null)
                 {
                     InLight = true;
+                    target = potentialTarget;
                     print("LIGHT CENTER!");
                 }
             }
@@ -70,26 +77,28 @@ namespace Enemy
                     Die();
                 }
             }
-            EnterLight(other);
+            HasEnteredLight(other);
 
 
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.gameObject.name.Contains("Light"))
+            EnemyTarget potentialTarget = other.gameObject.GetComponent<EnemyTarget>();
+
+            if (potentialTarget != null)
             {
                 print("Dark!!");
-                float distance = Vector2.Distance(transform.position, other.gameObject.transform.position);
+                float distance = Vector2.Distance(transform.position, potentialTarget.getTarget().position);
 
-                RaycastHit2D hit = Physics2D.Raycast(other.gameObject.transform.position,transform.position, distance, layerMask);
+                RaycastHit2D hit = Physics2D.Raycast(potentialTarget.getTarget().position, transform.position, distance, layerMask);
 
                 Debug.DrawRay(transform.position, other.gameObject.transform.position);
 
                 if (hit.collider == null)
                 {
                     print("DarkCENTER!!");
-                    target = other.transform.position;
+                    lastPosition = potentialTarget.getTarget().position;
                     InLight = false;
                 }
 
