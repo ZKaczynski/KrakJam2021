@@ -99,7 +99,6 @@ namespace Player
             if (pickUp != null && interactablesInRange.Contains(pickUp) == false)
             {
                 interactablesInRange.Add(pickUp);
-                Debug.Log("In range");
             }
         }
 
@@ -125,7 +124,6 @@ namespace Player
             if (pickUp != null)
             {
                 interactablesInRange.Remove(pickUp);
-                Debug.Log("Out range");
             }
         }
 
