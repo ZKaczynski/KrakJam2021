@@ -76,7 +76,7 @@ Transform:
   - {fileID: 8338407211585663054}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8862695277005342451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3495950952476116138}
   - component: {fileID: 8373933365665856787}
+  - component: {fileID: 7641100570191668535}
   m_Layer: 0
   m_Name: LightCollider
   m_TagString: Untagged
@@ -146,11 +147,23 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.05044191, y: 2.5565012}
-      - {x: -1.343749, y: 2.3840277}
-      - {x: -0.23386133, y: 0.3807696}
-      - {x: 0.21880084, y: 0.36570907}
-      - {x: 1.2998638, y: 2.3653278}
+    - - {x: 1.5450158, y: 4.07817}
+      - {x: -1.4745225, y: 4.0464377}
+      - {x: -0.11358885, y: 0.38076964}
+      - {x: 0.11857405, y: 0.34566352}
+--- !u!114 &7641100570191668535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4792958504988180778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d513666b759bd1f47820a4f5928ce209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTarget: {fileID: 0}
 --- !u!1 &8373933364716539008
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +188,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8373933364716539008}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7108837, w: 0.7033096}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -207,10 +220,10 @@ MonoBehaviour:
   m_AlphaBlendOnOverlap: 0
   m_ShadowIntensity: 1
   m_ShadowVolumeIntensity: 0
-  m_PointLightInnerAngle: 58.1
-  m_PointLightOuterAngle: 58.1
+  m_PointLightInnerAngle: 34.59
+  m_PointLightOuterAngle: 34.59
   m_PointLightInnerRadius: 1.7014396
-  m_PointLightOuterRadius: 2.621279
+  m_PointLightOuterRadius: 3.7247527
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
