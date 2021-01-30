@@ -17,7 +17,7 @@ namespace Player
 
         void Update()
         {
-            if (gameMaster.IsGameFinished)
+            if (GameMaster.IsGameFinished)
             {
                 return;
             }
@@ -90,9 +90,9 @@ namespace Player
 
         private void Die()
         {
-            if (gameMaster.IsGameFinished != true)
+            if (GameMaster.IsGameFinished != true)
             {
-                gameMaster.OnPlayerDied();
+                GameMaster.OnGameFinished();
             }
         }
     }

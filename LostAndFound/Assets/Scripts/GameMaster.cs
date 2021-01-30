@@ -1,36 +1,48 @@
 ﻿
+using System;
+using Levels;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class GameMaster : MonoBehaviour
 {
-    private static GameMaster instance;
+    [SerializeField] private LevelLoader levelLoader;
+    [SerializeField] private UIController uiController;
+
     
-    public static GameMaster Instance
-    {
-        get
-        {
-            if (instance == null){
-                GameObject go = new GameObject(nameof(GameMaster));
-                instance = go.AddComponent<GameMaster>();
-                DontDestroyOnLoad(instance);
-            }
-            return instance;
-        }
-    }
+    public static GameMaster Instance => GameObject.Find("GameMaster").GetComponent<GameMaster>();
 
     public bool IsGameFinished { get; private set; } = false;
     public bool IsLevelFinished { get; private set; } = false;
     public bool CanTrapsKillEnemies { get; } = true;
+    public int CurrentLevel { get; private set; } = -1;
 
     public void OnLevelFinished()
     {
+        levelLoader.CleanUp();
         IsLevelFinished = true;
     }
 
-    public void OnPlayerDied()
+    public void OnGameFinished()
     {
+        OnLevelFinished();
         IsGameFinished = true;
+        uiController.OpenDefeatScreen();
+    }
+
+    public void StartLevel(int level)
+    {
+        IsGameFinished = false;
+        IsLevelFinished = false;
+        CurrentLevel = level;
+
+        levelLoader.LoadLevel(level);
+    }
+
+    public void ReloadCurrentLevel()
+    {
+        StartLevel(CurrentLevel);
     }
     
     private GameMaster()

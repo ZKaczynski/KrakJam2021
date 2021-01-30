@@ -24,7 +24,7 @@ namespace Enemy
 
         void Update()
         {
-            if (gameMaster.IsGameFinished)
+            if (GameMaster.IsGameFinished)
             {
                 return;
             }
@@ -69,7 +69,7 @@ namespace Enemy
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (gameMaster.CanTrapsKillEnemies)
+            if (GameMaster.CanTrapsKillEnemies)
             {
                 var boobyTrap = other.gameObject.GetComponent<BoobyTrapBehaviour>();
                 if(boobyTrap != null && boobyTrap.IsEngaged)
