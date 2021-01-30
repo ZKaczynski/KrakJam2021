@@ -13,7 +13,7 @@ namespace LevelMechanics
 
         public bool IsPulled { get; private set; }
 
-        private void Awake()
+        protected override void CustomAwake()
         {
             IsPulled = startPulled;
         }

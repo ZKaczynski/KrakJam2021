@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class SceneObject : MonoBehaviour
 {
-    protected GameMaster gameMaster;
+    protected GameMaster GameMaster;
     
     private void Awake()
     {
+        GameMaster = GameMaster.Instance;
         CustomAwake();
     }
 
-    private void CustomAwake()
+    protected virtual void  CustomAwake()
     {
-        gameMaster = GameMaster.Instance;
     }
 }

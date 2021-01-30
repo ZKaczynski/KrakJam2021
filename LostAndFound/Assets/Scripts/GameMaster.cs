@@ -1,11 +1,16 @@
 ﻿
+using System;
 using UnityEngine;
 
 
 public class GameMaster : MonoBehaviour
 {
     private static GameMaster instance;
-    
+
+    private void Start()
+    {
+    }
+
     public static GameMaster Instance
     {
         get
@@ -23,14 +28,32 @@ public class GameMaster : MonoBehaviour
     public bool IsLevelFinished { get; private set; } = false;
     public bool CanTrapsKillEnemies { get; } = true;
 
+    public int CurrentLevel { get; private set; } = -1;
+
     public void OnLevelFinished()
     {
         IsLevelFinished = true;
+        Time.timeScale = 0;
     }
 
-    public void OnPlayerDied()
+    public void OnGameFinished()
     {
+        OnLevelFinished();
         IsGameFinished = true;
+    }
+
+    public void StartLevel(int level)
+    {
+        IsGameFinished = false;
+        IsLevelFinished = false;
+        CurrentLevel = level;
+
+        Time.timeScale = 1;
+    }
+
+    public void ReloadCurrentLevel()
+    {
+        StartLevel(CurrentLevel);
     }
     
     private GameMaster()
