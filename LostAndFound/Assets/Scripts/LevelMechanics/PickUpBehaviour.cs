@@ -17,6 +17,6 @@ public class PickUpBehaviour : SceneObject, IInteractable
     private void PickUp()
     {
         GameMaster.GetInventory().AddItem(pickUpType);
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

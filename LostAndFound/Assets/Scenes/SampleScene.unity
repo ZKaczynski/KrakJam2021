@@ -281,6 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1170132997}
   - component: {fileID: 1170132998}
+  - component: {fileID: 1170132999}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -317,8 +318,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 2059921900}
   uiController: {fileID: 1929873169}
+  inventory: {fileID: 1170132999}
   skipMenu: 1
   canTrapsKillEnemies: 1
+--- !u!114 &1170132999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170132996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25631aa628689f74abb0d51172937f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1378373841
 GameObject:
   m_ObjectHideFlags: 3
