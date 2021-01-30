@@ -1,36 +1,71 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using General;
+using LevelMechanics;
+using UnityEngine;
+using UnityEngine.XR.WSA.Input;
 
 namespace Player
 {
-    public class PlayerController : MonoBehaviour{
-        
+    public class PlayerController : MonoBehaviour
+    {
+
         [SerializeField] private float speed = 2;
-        
+
         private Quaternion lookRotation;
         private Vector3 direction;
-        
-        void Update(){
+        private List<IInteractable> interactablesInRange = new List<IInteractable>();
+
+        void Update()
+        {
             float inputX = Input.GetAxis("Horizontal");
             float inputY = Input.GetAxis("Vertical");
 
-            Vector3 movement = new Vector3(speed * inputX, speed * inputY,0);
+            Vector3 movement = new Vector3(speed * inputX, speed * inputY, 0);
 
             movement *= Time.deltaTime;
 
             transform.Translate(movement);
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                InteractWithInteractablesInRange();
+            }
         }
 
-        void OnCollisionEnter2D(Collision2D collision) {
-
-
-            if (collision.gameObject.CompareTag("Enemy"))
-                {
-                    Debug.Log("death!!");
-                }
-                
-  
+        void InteractWithInteractablesInRange()
+        {
+            foreach (var interactable in interactablesInRange)
+            {
+                interactable.Interact();
+            }
         }
 
+        void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                Debug.Log("death!!");
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            var lever = other.gameObject.GetComponent<LeverBehaviour>();
+            if (lever != null)
+            {
+                interactablesInRange.Add(lever);
+            }        
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            var lever = other.gameObject.GetComponent<LeverBehaviour>();
+            if (lever != null)
+            {
+                interactablesInRange.Remove(lever);
+            }
+        }
     }
 }
 

@@ -27,20 +27,23 @@ public class EnemyMovement : MonoBehaviour
 
             transform.position = Vector2.MoveTowards(transform.position, target, step);
         }
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        inLight = true;
-        
+        if (other.gameObject.name.Contains("Light"))
+        {
+            inLight = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        target = other.transform.position;
-        inLight = false;
+        if (other.gameObject.name.Contains("Light"))
+        {
+            target = other.transform.position;
+            inLight = false;
+            
+        }
     }
-
 }
