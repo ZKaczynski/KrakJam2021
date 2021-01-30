@@ -9,9 +9,9 @@ namespace LevelMechanics
     public class DoorBehaviour : MonoBehaviour
     {
         [SerializeField] private List<LeverBehaviour> levers;
-        [SerializeField] private SpriteRenderer spriteRenderer;
-        [SerializeField] private Rigidbody2D rigidbody;
-        [SerializeField] private ShadowCaster2D shadowCaster;
+        [SerializeField] private SpriteRenderer spriteRendererToDisable;
+        [SerializeField] private Rigidbody2D rigidbodyToDisable;
+        [SerializeField] private List<ShadowCaster2D> shadowCastersToDisable;
 
         private Dictionary<LeverBehaviour, bool> leversToStates = new Dictionary<LeverBehaviour, bool>();
         
@@ -58,9 +58,9 @@ namespace LevelMechanics
 
         private void Open()
         {
-            spriteRenderer.enabled = false;
-            shadowCaster.castsShadows = false;
-            rigidbody.simulated = false;
+            spriteRendererToDisable.enabled = false;
+            shadowCastersToDisable.ForEach(sc => sc.castsShadows = false);
+            rigidbodyToDisable.simulated = false;
         }
     }
 }
