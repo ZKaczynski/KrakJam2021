@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
   transformToScale: {fileID: 7093860298673950083}
-  sizeOfMarginInUnits: 0.2
+  sizeOfMarginInUnits: 0.1
 --- !u!114 &7918937717933531140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,4 +86,4 @@ MonoBehaviour:
   - {x: -0.5, y: 0.5, z: 0}
   m_ShapePathHash: 160822549
   m_Mesh: {fileID: 0}
-  m_InstanceId: -89096
+  m_InstanceId: 37486

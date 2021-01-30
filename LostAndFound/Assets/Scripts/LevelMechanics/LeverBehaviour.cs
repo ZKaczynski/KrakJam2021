@@ -7,31 +7,37 @@ namespace LevelMechanics
     public class LeverBehaviour : MonoBehaviour, IInteractable
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private bool startPulled;
 
-        public event Action<LeverBehaviour, bool> LeverStateChangedEvent;
-        
-        private bool isPulled = false;
+        public event Action<LeverBehaviour> LeverStateChangedEvent;
+
+        public bool IsPulled { get; private set; }
 
         private void Start()
         {
-            UpdateGraphics();
+            Setup(startPulled);
         }
 
         public void Interact()
         {
-            isPulled = !isPulled;
-            UpdateGraphics();
+            ChangePulledState();
+        }
+
+        private void ChangePulledState()
+        {
+            Setup(!IsPulled);
             OnLeverStateChangedEvent();
         }
 
-        private void UpdateGraphics()
+        private void Setup(bool state)
         {
-            spriteRenderer.color = isPulled ? Color.green : Color.red;
+            IsPulled = state;
+            spriteRenderer.color = IsPulled ? Color.green : Color.yellow;
         }
 
         private void OnLeverStateChangedEvent()
         {
-            LeverStateChangedEvent?.Invoke(this, isPulled);
+            LeverStateChangedEvent?.Invoke(this);
         }
     }
 }
