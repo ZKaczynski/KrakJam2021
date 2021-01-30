@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using General;
 using LevelMechanics;
 using UnityEngine;
-using UnityEngine.XR.WSA.Input;
 
 namespace Player
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : SceneObject
     {
 
         [SerializeField] private float speed = 2;
@@ -18,22 +16,31 @@ namespace Player
 
         void Update()
         {
+            if (gameMaster.IsGameFinished)
+            {
+                return;
+            }
+            
             float inputX = Input.GetAxis("Horizontal");
             float inputY = Input.GetAxis("Vertical");
-
-            Vector3 movement = new Vector3(speed * inputX, speed * inputY, 0);
-
-            movement *= Time.deltaTime;
-
-            transform.Translate(movement);
-
+            Move(inputX, inputY);
+            
             if (Input.GetKeyDown(KeyCode.E))
             {
                 InteractWithInteractablesInRange();
             }
         }
 
-        void InteractWithInteractablesInRange()
+        private void Move(float inputX, float inputY)
+        {
+            Vector3 movement = new Vector3(speed * inputX, speed * inputY, 0);
+
+            movement *= Time.deltaTime;
+
+            transform.Translate(movement);
+        }
+
+        private void InteractWithInteractablesInRange()
         {
             foreach (var interactable in interactablesInRange)
             {
@@ -44,7 +51,7 @@ namespace Player
             }
         }
 
-        void OnCollisionEnter2D(Collision2D other)
+        private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
@@ -78,7 +85,7 @@ namespace Player
 
         private void Die()
         {
-            Debug.Log("death!!");
+            gameMaster.OnPlayerDied();
         }
     }
 }

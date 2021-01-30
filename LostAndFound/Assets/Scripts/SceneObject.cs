@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SceneObject : MonoBehaviour
 {
-    private GameMaster _gameMaster;
+    protected GameMaster gameMaster;
     
     private void Awake()
     {
@@ -14,6 +14,6 @@ public class SceneObject : MonoBehaviour
 
     private void CustomAwake()
     {
-        _gameMaster = GameMaster.Instance;
+        gameMaster = GameMaster.Instance;
     }
 }

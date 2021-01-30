@@ -17,6 +17,11 @@ namespace Enemy
 
         void Update()
         {
+            if (gameMaster.IsGameFinished)
+            {
+                return;
+            }
+            
             if (target != null && InLight == false)
             {
 
