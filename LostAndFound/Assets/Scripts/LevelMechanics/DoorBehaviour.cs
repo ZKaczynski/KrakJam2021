@@ -5,7 +5,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 namespace LevelMechanics
 {
-    public class DoorBehaviour : MonoBehaviour
+    public class DoorBehaviour : SceneObject
     {
         [SerializeField] private List<LeverBehaviour> levers;
         [SerializeField] private SpriteRenderer spriteRendererToDisable;

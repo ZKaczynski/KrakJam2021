@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LevelMechanics
 {
-    public class BoobyTrapBehaviour : MonoBehaviour
+    public class BoobyTrapBehaviour : SceneObject
     {
         [SerializeField] private List<LeverBehaviour> levers; 
         [SerializeField] private Collider2D trapCollider;

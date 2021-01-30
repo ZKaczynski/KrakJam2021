@@ -1,61 +1,60 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+namespace Enemy
 {
-
-    bool inLight = false;
-    [SerializeField]
-    private float speed = 0.5f;
-
-    private Vector2 target;
-
-    void Start()
+    public class EnemyMovement : SceneObject
     {
-        target = transform.position;
-    }
+        [SerializeField] private float speed = 0.5f;
 
+        public bool InLight { get; private set; }
+        
+        private Vector2 target;
 
-    void Update()
-    {
-        if (target != null && inLight == false)
+        void Start()
         {
-
-
-            float step = speed * Time.deltaTime;
-
-            transform.position = Vector2.MoveTowards(transform.position, target, step);
+            target = transform.position;
         }
-    }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.name.Contains("Light"))
-        { 
-            //  RaycastHit2D hit = Physics2D.Raycast(transform.position, other.gameObject.transform.position);
-
-            //  if (hit.collider == null)
-            // //  {
-            inLight = true; 
-            //  }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.name.Contains("Light"))
+        void Update()
         {
-            // RaycastHit2D hit = Physics2D.Raycast(transform.position, other.gameObject.transform.position);
-            // Debug.Log(hit)
+            if (target != null && InLight == false)
+            {
 
-            //if (hit.collider == null)
-            // {
 
-            target = other.transform.position;
-            inLight = false;
+                float step = speed * Time.deltaTime;
 
-            // }
+                transform.position = Vector2.MoveTowards(transform.position, target, step);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.name.Contains("Light"))
+            { 
+                //  RaycastHit2D hit = Physics2D.Raycast(transform.position, other.gameObject.transform.position);
+
+                //  if (hit.collider == null)
+                // //  {
+                InLight = true; 
+                //  }
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.name.Contains("Light"))
+            {
+                // RaycastHit2D hit = Physics2D.Raycast(transform.position, other.gameObject.transform.position);
+                // Debug.Log(hit)
+
+                //if (hit.collider == null)
+                // {
+
+                target = other.transform.position;
+                InLight = false;
+
+                // }
+            }
         }
     }
 }

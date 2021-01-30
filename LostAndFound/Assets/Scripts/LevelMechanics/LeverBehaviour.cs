@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LevelMechanics
 {
-    public class LeverBehaviour : MonoBehaviour, IInteractable
+    public class LeverBehaviour : SceneObject, IInteractable
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private bool startPulled;
