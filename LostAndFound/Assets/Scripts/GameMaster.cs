@@ -6,6 +6,7 @@ public class GameMaster : MonoBehaviour
 {
     [SerializeField] private LevelLoader levelLoader;
     [SerializeField] private UIController uiController;
+    [SerializeField] private Inventory inventory;
 
     [Header("Game Parameters")]
     [SerializeField] private bool skipMenu = true;
@@ -60,5 +61,10 @@ public class GameMaster : MonoBehaviour
     
     private GameMaster()
     {
+    }
+
+    public Inventory GetInventory()
+    {
+        return inventory;
     }
 }

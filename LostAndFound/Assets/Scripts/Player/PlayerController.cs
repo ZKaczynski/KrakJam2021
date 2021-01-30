@@ -15,6 +15,13 @@ namespace Player
         private Vector3 direction;
         private HashSet<IInteractable> interactablesInRange = new HashSet<IInteractable>();
 
+        private Inventory inventory;
+
+        void Start()
+        {
+            inventory = GameMaster.GetInventory();
+        }
+
         void Update()
         {
             if (GameMaster.IsGameFinished)
@@ -29,6 +36,23 @@ namespace Player
             if (Input.GetKeyDown(KeyCode.E))
             {
                 InteractWithInteractablesInRange();
+            }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                TryToUseCurrentitem();
+            }
+        }
+
+        private void TryToUseCurrentitem()
+        {
+            if (inventory.GetCurrentItem())
+            {
+                Debug.Log("Item used!!");
+            }
+            else
+            {
+                Debug.Log("No items");
             }
         }
 
