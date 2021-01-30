@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 211876595440309984}
   - component: {fileID: 5980349491223990450}
-  - component: {fileID: 1498198494352472305}
+  - component: {fileID: 897964414961488714}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -83,19 +83,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1498198494352472305
-BoxCollider:
+--- !u!61 &897964414961488714
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5184584209932929366}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &8590573832718944473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -186,7 +199,7 @@ PrefabInstance:
     - target: {fileID: 7918937717933531140, guid: f6e2a1c3007076d4b9b8e840d7b932b5,
         type: 3}
       propertyPath: m_InstanceId
-      value: -97382
+      value: -85102
       objectReference: {fileID: 0}
     - target: {fileID: 7918937717933531140, guid: f6e2a1c3007076d4b9b8e840d7b932b5,
         type: 3}

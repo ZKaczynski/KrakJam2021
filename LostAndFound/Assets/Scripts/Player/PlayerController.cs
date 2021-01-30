@@ -14,7 +14,7 @@ namespace Player
 
         private Quaternion lookRotation;
         private Vector3 direction;
-        private List<IInteractable> interactablesInRange = new List<IInteractable>();
+        private HashSet<IInteractable> interactablesInRange = new HashSet<IInteractable>();
 
         void Update()
         {
@@ -37,7 +37,10 @@ namespace Player
         {
             foreach (var interactable in interactablesInRange)
             {
-                interactable.Interact();
+                if (interactable != null)
+                {
+                    interactable.Interact();
+                }
             }
         }
 
@@ -52,10 +55,12 @@ namespace Player
         private void OnTriggerEnter2D(Collider2D other)
         {
             var lever = other.gameObject.GetComponent<LeverBehaviour>();
-            if (lever != null)
+            if(interactablesInRange.Contains(lever) == false)
             {
                 interactablesInRange.Add(lever);
-            }        
+            }
+
+            interactablesInRange.Add(lever);
         }
 
         private void OnTriggerExit2D(Collider2D other)

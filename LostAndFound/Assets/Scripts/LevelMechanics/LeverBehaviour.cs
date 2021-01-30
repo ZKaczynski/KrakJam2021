@@ -11,7 +11,12 @@ namespace LevelMechanics
         public event Action<LeverBehaviour, bool> LeverStateChangedEvent;
         
         private bool isPulled = false;
-        
+
+        private void Start()
+        {
+            UpdateGraphics();
+        }
+
         public void Interact()
         {
             isPulled = !isPulled;
@@ -19,9 +24,9 @@ namespace LevelMechanics
             OnLeverStateChangedEvent();
         }
 
-        public void UpdateGraphics()
+        private void UpdateGraphics()
         {
-            spriteRenderer.color = isPulled ? Color.white : Color.green;
+            spriteRenderer.color = isPulled ? Color.green : Color.red;
         }
 
         private void OnLeverStateChangedEvent()
