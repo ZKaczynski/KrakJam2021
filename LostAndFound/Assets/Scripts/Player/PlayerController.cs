@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using General;
 using LevelMechanics;
 using UnityEngine;
@@ -67,11 +68,17 @@ namespace Player
                 interactablesInRange.Add(lever);
             }
 
+
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
             var boobyTrap = other.gameObject.GetComponent<BoobyTrapBehaviour>();
             if(boobyTrap != null && boobyTrap.IsEngaged)
             {
                 Die();
             }
+            
         }
 
         private void OnTriggerExit2D(Collider2D other)

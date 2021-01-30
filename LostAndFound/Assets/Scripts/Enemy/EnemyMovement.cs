@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using LevelMechanics;
+using UnityEngine;
 
 namespace Enemy
 {
@@ -45,6 +47,18 @@ namespace Enemy
             }
         }
 
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (gameMaster.CanTrapsKillEnemies)
+            {
+                var boobyTrap = other.gameObject.GetComponent<BoobyTrapBehaviour>();
+                if(boobyTrap != null && boobyTrap.IsEngaged)
+                {
+                    Die();
+                }
+            }        
+        }
+
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject.name.Contains("Light"))
@@ -60,6 +74,11 @@ namespace Enemy
 
                 // }
             }
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
         }
     }
 }
