@@ -225,7 +225,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 40
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f5117d147624d2249a6cf5dc5cb68911, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -292,6 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6780803770256853484}
   - component: {fileID: 1920905926735360085}
+  - component: {fileID: 3828391877001021084}
   m_Layer: 0
   m_Name: LightCollider
   m_TagString: Untagged
@@ -343,6 +344,27 @@ PolygonCollider2D:
       - {x: -0.23386133, y: 0.3807696}
       - {x: 0.21880084, y: 0.36570907}
       - {x: 1.2998638, y: 2.3653278}
+--- !u!50 &3828391877001021084
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3177957600386813036}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6965473003120841475
 GameObject:
   m_ObjectHideFlags: 0
