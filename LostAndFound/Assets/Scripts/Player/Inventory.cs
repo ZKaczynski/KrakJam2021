@@ -1,42 +1,39 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using LevelMechanics;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+namespace Player
 {
-
-    private int currentItem = 0;
-    private int[] items = new int[1];
-
-    void Start()
+    public class Inventory : MonoBehaviour
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        private ItemType currentItem = 0;
+        private Dictionary<ItemType, int> items = new Dictionary<ItemType, int>();
 
-    internal void AddItem(int pickUpType)
-    {
-        items[pickUpType]++;
-    }
-
-
-    internal bool GetCurrentItem()
-    {
-        if (items[currentItem] > 0)
+        internal void AddItem(ItemType pickUpType)
         {
-            items[currentItem]--;
-            return true;
+            if(items.TryGetValue(pickUpType, out int amount))
+            {
+                items[pickUpType] = amount + 1;
+            }
+            else
+            {
+                items[pickUpType] = 1;
+            }
         }
-        else
+
+
+        internal bool GetCurrentItem()
         {
+            if(items.TryGetValue(currentItem, out int amount))
+            {
+                if (amount > 0)
+                {
+                    items[currentItem] = amount - 1;
+                    return true;
+                }
+            }
             return false;
         }
-
     }
 }

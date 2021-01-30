@@ -67,12 +67,11 @@ namespace Player
 
         private void InteractWithInteractablesInRange()
         {
+            interactablesInRange.Remove(null);
+
             foreach (var interactable in interactablesInRange)
             {
-                if (interactable != null)
-                {
-                    interactable.Interact();
-                }
+                interactable.Interact();
             }
         }
 

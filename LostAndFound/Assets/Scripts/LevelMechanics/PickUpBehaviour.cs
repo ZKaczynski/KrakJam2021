@@ -1,22 +1,28 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using General;
 using UnityEngine;
 
-public class PickUpBehaviour : SceneObject, IInteractable
+namespace LevelMechanics
 {
-
-    public int pickUpType = 0;
-
-    public void Interact()
+    public class PickUpBehaviour : SceneObject, IInteractable
     {
-        PickUp();
-    }
+        public ItemType pickUpType = ItemType.Flare;
+        
+        public void Interact()
+        {
+            PickUp();
+        }
 
-    private void PickUp()
-    {
-        GameMaster.GetInventory().AddItem(pickUpType);
-        Destroy(gameObject);
+        private void PickUp()
+        {
+            GameMaster.GetInventory().AddItem(pickUpType);
+            StartCoroutine(COR_DestroyInNextFrame());
+        }
+
+        private IEnumerator COR_DestroyInNextFrame()
+        {
+            yield return new WaitForEndOfFrame();
+            Destroy(gameObject);
+        }
     }
 }

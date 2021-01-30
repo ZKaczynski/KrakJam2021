@@ -22,7 +22,7 @@ namespace LevelMechanics
         {
             Setup(IsPulled);
         }
-
+        
         public void Interact()
         {
             ChangePulledState();
