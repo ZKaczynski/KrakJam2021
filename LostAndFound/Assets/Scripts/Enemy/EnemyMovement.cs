@@ -50,15 +50,7 @@ namespace Enemy
 
             if (potentialTarget != null)
             {
-
-                float distance = Vector2.Distance(transform.position, potentialTarget.getTarget().position);
-                
-
-                RaycastHit2D hit = Physics2D.Raycast(potentialTarget.getTarget().position, transform.position, distance, layerMask);
-
-                Debug.DrawRay(transform.position, potentialTarget.getTarget().position, Color.red);
-
-                if (hit.collider == null)
+                if (HasLineOfSight(potentialTarget.getTarget(), Color.red))
                 {
                     InLight = true;
                     target = potentialTarget;
@@ -77,9 +69,6 @@ namespace Enemy
                     Die();
                 }
             }
-            
-
-
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -88,21 +77,26 @@ namespace Enemy
 
             if (potentialTarget != null)
             {
-                print("Dark!!");
-                float distance = Vector2.Distance(transform.position, potentialTarget.getTarget().position);
-
-                RaycastHit2D hit = Physics2D.Raycast(potentialTarget.getTarget().position, transform.position, distance, layerMask);
-
-                Debug.DrawRay(transform.position, other.gameObject.transform.position);
-
-                if (hit.collider == null)
+                if (HasLineOfSight(potentialTarget.getTarget(), Color.green))
                 {
                     print("DarkCENTER!!");
                     lastPosition = potentialTarget.getTarget().position;
                     InLight = false;
                 }
-
             }
+        }
+
+        private bool HasLineOfSight(Transform other, Color colorOfGizmos)
+        {
+            Vector3 enemyPosition = transform.position;
+            Vector3 targetPosition = other.position;
+
+            float distance = Vector2.Distance(enemyPosition, targetPosition);
+            RaycastHit2D hit = Physics2D.Raycast(enemyPosition, targetPosition - enemyPosition, distance, layerMask);
+
+            Debug.DrawRay(enemyPosition, targetPosition - enemyPosition, colorOfGizmos);
+
+            return hit.collider == null;
         }
 
         private void Die()
