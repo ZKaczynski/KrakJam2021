@@ -1,15 +1,37 @@
-﻿using Utils;
+﻿
+using UnityEngine;
 
-public class GameMaster
+
+public class GameMaster : MonoBehaviour
 {
-    private static readonly GameMaster Instance = null;
-
-    public static GameMaster GetInstance()
-    {
-        return Instance ?? new GameMaster();
-    }
+    private static GameMaster instance;
     
-    public TransformUtils TransformUtils = new TransformUtils();
+    public static GameMaster Instance
+    {
+        get
+        {
+            if (instance == null){
+                GameObject go = new GameObject(nameof(GameMaster));
+                instance = go.AddComponent<GameMaster>();
+                DontDestroyOnLoad(instance);
+            }
+            return instance;
+        }
+    }
+
+    public bool IsGameFinished { get; private set; } = false;
+    public bool IsLevelFinished { get; private set; } = false;
+    public bool CanTrapsKillEnemies { get; } = true;
+
+    public void OnLevelFinished()
+    {
+        IsLevelFinished = true;
+    }
+
+    public void OnPlayerDied()
+    {
+        IsGameFinished = true;
+    }
     
     private GameMaster()
     {

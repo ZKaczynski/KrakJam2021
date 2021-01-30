@@ -14,6 +14,6 @@ public class SceneObject : MonoBehaviour
 
     private void CustomAwake()
     {
-        _gameMaster = GameMaster.GetInstance();
+        _gameMaster = GameMaster.Instance;
     }
 }
