@@ -159,7 +159,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defeatScreen: {fileID: 7937206680200814311}
   mainMenuScreen: {fileID: 4797249129132003472}
-  currentScreen: {fileID: 0}
 --- !u!1001 &1959410773259871439
 PrefabInstance:
   m_ObjectHideFlags: 0

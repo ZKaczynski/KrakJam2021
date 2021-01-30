@@ -1,22 +1,35 @@
 ﻿
-using System;
 using Levels;
 using UnityEngine;
-using UnityEngine.Serialization;
-
 
 public class GameMaster : MonoBehaviour
 {
     [SerializeField] private LevelLoader levelLoader;
     [SerializeField] private UIController uiController;
 
-    
+    [Header("Game Parameters")]
+    [SerializeField] private bool skipMenu = true;
+    [SerializeField] private bool canTrapsKillEnemies = true;
+
     public static GameMaster Instance => GameObject.Find("GameMaster").GetComponent<GameMaster>();
 
     public bool IsGameFinished { get; private set; } = false;
     public bool IsLevelFinished { get; private set; } = false;
-    public bool CanTrapsKillEnemies { get; } = true;
+    public bool CanTrapsKillEnemies => canTrapsKillEnemies;
+    public bool SkipMenu => skipMenu;
     public int CurrentLevel { get; private set; } = -1;
+
+    private void Start()
+    {
+        if (SkipMenu)
+        {
+            StartLevel(0);
+        }
+        else
+        {
+            uiController.OpenMainMenu();
+        }
+    }
 
     public void OnLevelFinished()
     {
