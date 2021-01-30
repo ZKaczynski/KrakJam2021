@@ -10,7 +10,7 @@ namespace LevelMechanics
         [SerializeField] private Collider2D trapCollider;
         [SerializeField] private SpriteRenderer spriteRenderer;
         
-        public bool IsEngaged { get; set; }
+        public bool IsEngaged { get; private set; }
 
         private void Start()
         {
