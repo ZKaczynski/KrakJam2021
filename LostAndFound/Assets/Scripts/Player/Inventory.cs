@@ -20,10 +20,11 @@ public class Inventory : MonoBehaviour
         
     }
 
-    public void GetFlare()
+    internal void AddItem(int pickUpType)
     {
-        items[0]++;
+        items[pickUpType]++;
     }
+
 
     internal bool GetCurrentItem()
     {
@@ -31,7 +32,6 @@ public class Inventory : MonoBehaviour
         {
             items[currentItem]--;
             return true;
-
         }
         else
         {

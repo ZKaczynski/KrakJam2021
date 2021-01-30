@@ -40,11 +40,11 @@ namespace Player
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                TryToUseCurrentitem();
+                TryToUseCurrentItem();
             }
         }
 
-        private void TryToUseCurrentitem()
+        private void TryToUseCurrentItem()
         {
             if (inventory.GetCurrentItem())
             {
@@ -91,6 +91,14 @@ namespace Player
             {
                 interactablesInRange.Add(lever);
             }
+
+            var pickUp = other.gameObject.GetComponent<PickUpBehaviour>();
+
+            if (pickUp != null && interactablesInRange.Contains(pickUp) == false)
+            {
+                interactablesInRange.Add(pickUp);
+                Debug.Log("In range");
+            }
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -109,6 +117,13 @@ namespace Player
             if (lever != null)
             {
                 interactablesInRange.Remove(lever);
+            }
+
+            var pickUp = other.gameObject.GetComponent<PickUpBehaviour>();
+            if (pickUp != null)
+            {
+                interactablesInRange.Remove(pickUp);
+                Debug.Log("Out range");
             }
         }
 
