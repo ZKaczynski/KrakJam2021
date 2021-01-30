@@ -39,6 +39,7 @@ MonoBehaviour:
   shadowCastersToDisable:
   - {fileID: 6750375131025168728}
   - {fileID: 8749819122898509528}
+  allowClose: 0
 --- !u!1001 &7187732519904441861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,6 +136,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 0.3679245
+      objectReference: {fileID: 0}
+    - target: {fileID: 5980349491223990450, guid: 6b2aef97c7ce6334c9fed99dd2b4b8c0,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1498198494352472305, guid: 6b2aef97c7ce6334c9fed99dd2b4b8c0, type: 3}

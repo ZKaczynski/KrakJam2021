@@ -48,19 +48,23 @@ namespace Player
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log("death!!");
+                Die();
             }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             var lever = other.gameObject.GetComponent<LeverBehaviour>();
-            if(interactablesInRange.Contains(lever) == false)
+            if(lever != null && interactablesInRange.Contains(lever) == false)
             {
                 interactablesInRange.Add(lever);
             }
 
-            interactablesInRange.Add(lever);
+            var boobyTrap = other.gameObject.GetComponent<BoobyTrapBehaviour>();
+            if(boobyTrap != null && boobyTrap.IsEngaged)
+            {
+                Die();
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -70,6 +74,11 @@ namespace Player
             {
                 interactablesInRange.Remove(lever);
             }
+        }
+
+        private void Die()
+        {
+            Debug.Log("death!!");
         }
     }
 }

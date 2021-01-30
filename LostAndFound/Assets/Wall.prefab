@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: cce91492e258fb4449ee173ca48b7434, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   - {x: -0.5, y: 0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -152134
+  m_InstanceId: 39778
 --- !u!1001 &8590573832718944473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -226,7 +226,7 @@ PrefabInstance:
     - target: {fileID: 7918937717933531140, guid: f6e2a1c3007076d4b9b8e840d7b932b5,
         type: 3}
       propertyPath: m_InstanceId
-      value: -148032
+      value: -184824
       objectReference: {fileID: 0}
     - target: {fileID: 7918937717933531140, guid: f6e2a1c3007076d4b9b8e840d7b932b5,
         type: 3}
