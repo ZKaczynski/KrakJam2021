@@ -105,6 +105,11 @@ namespace Player
             {
                 interactablesInRange.Add(tripWire);
             }
+
+            if (other.gameObject.CompareTag("Finish")){
+                GameMaster.OnLevelFinished();
+            }
+
         }
 
         private void OnTriggerStay2D(Collider2D other)
