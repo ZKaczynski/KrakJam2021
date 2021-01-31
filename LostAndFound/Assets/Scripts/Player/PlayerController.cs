@@ -167,8 +167,6 @@ namespace Player
             GameObject projectileInstance = Instantiate(objectToThrow, transform.position, Quaternion.identity);
 
             projectileInstance.GetComponent<Projectile>().setTarget(mousePos);
-            
-
         }
     }
 }
