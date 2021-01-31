@@ -14,6 +14,8 @@ namespace Enemy
         private Vector3? lastPosition;
         private bool lastPositionHasMeaningfulValue;
 
+        private AudioSource audio = null;
+
         private bool ShouldMove => target != null || lastPosition.HasValue;
         private bool CanMove => InLight == false;
 
@@ -21,6 +23,7 @@ namespace Enemy
 
         void Start()
         {
+            audio = GetComponent<AudioSource>();
             InLight = false;
             target = null;
         }
@@ -31,9 +34,12 @@ namespace Enemy
             {
                 return;
             }
-            
+
             if (ShouldMove && CanMove)
             {
+                if (!audio.isPlaying) { 
+                    audio.Play();
+                }
                 if (target != null && HasLineOfSight(target, Color.clear))
                 {
                     lastPosition = target.position;
