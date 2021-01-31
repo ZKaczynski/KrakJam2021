@@ -106,11 +106,15 @@ namespace Player
             {
                 interactablesInRange.Add(tripWire);
             }
+            
+            if (other.gameObject.CompareTag("Arrow"))
+            {
+                Die();
+            }
 
             if (other.gameObject.CompareTag("Finish")){
                 GameMaster.OnLevelFinished();
             }
-
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -120,7 +124,6 @@ namespace Player
             {
                 Die();
             }
-            
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -142,8 +145,13 @@ namespace Player
             {
                 interactablesInRange.Remove(tripWire);
             }
+            
+            if (other.gameObject.CompareTag("Arrow"))
+            {
+                Die();
+            }
         }
-
+        
         private void Die()
         {
             if (GameMaster.IsGameFinished != true)
