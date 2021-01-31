@@ -11,5 +11,11 @@ namespace UI
             GameMaster.StartLevel(0);
             Close();
         }
+
+        [UsedImplicitly]
+        public void OnExitButtonClicke()
+        {
+            Close();
+        }
     }
 }
