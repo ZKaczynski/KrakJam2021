@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -416,7 +416,7 @@ MonoBehaviour:
   levelLoader: {fileID: 2059921900}
   uiController: {fileID: 1929873169}
   inventory: {fileID: 1170132999}
-  skipMenu: 1
+  skipMenu: 0
   canTrapsKillEnemies: 1
 --- !u!114 &1170132999
 MonoBehaviour:
@@ -623,11 +623,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1170132997}
     m_Modifications:
-    - target: {fileID: 5923145739757593393, guid: 5d42648873f641c4d99aa45077fea2da,
-        type: 3}
-      propertyPath: cinemachineVirtualCamera
-      value: 
-      objectReference: {fileID: 1653741881}
     - target: {fileID: 5923145739757593398, guid: 5d42648873f641c4d99aa45077fea2da,
         type: 3}
       propertyPath: m_RootOrder
