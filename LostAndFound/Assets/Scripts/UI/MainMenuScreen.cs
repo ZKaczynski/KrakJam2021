@@ -5,6 +5,11 @@ namespace UI
 {
     public class MainMenuScreen : UIScreen
     {
+        [SerializeField] private GameObject eyeAnimation;
+        [SerializeField] private GameObject tutorial;
+
+        private bool flag;
+        
         [UsedImplicitly]
         public void OnPlayButtonClicked()
         {
@@ -13,9 +18,17 @@ namespace UI
         }
 
         [UsedImplicitly]
-        public void OnExitButtonClicke()
+        public void OnExitButtonClicked()
         {
-            Close();
+            Application.Quit();
+        }
+        
+        [UsedImplicitly]
+        public void OnTutorialButtonClicked()
+        {
+            eyeAnimation.SetActive(flag);
+            tutorial.SetActive(!flag);
+            flag = !flag;
         }
     }
 }
