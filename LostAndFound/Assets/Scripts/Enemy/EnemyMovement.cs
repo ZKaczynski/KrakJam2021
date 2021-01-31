@@ -47,9 +47,35 @@ namespace Enemy
                 {
                     lastPosition = target.position;
 
+                    Vector3 objectPos = transform.position;
+
+                    Vector3 dir = (Vector3)(lastPosition - transform.position);
+
+                    //targ.x = targ.x - objectPos.x;
+                    //targ.y = targ.y - objectPos.y;
+
+                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+                    /*
+                    Vector3 vectorToTarget = (Vector3)(lastPosition - transform.position);
+                    float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+                    Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+                    */
+
+                    //transform.LookAt(target.position);
+
+
+                    //Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                    //Vector2 perpendicular = Vector3.Cross((Vector3)(transform.position - lastPosition), Vector3.forward);
+                    //transform.rotation = Quaternion.LookRotation(Vector3.forward, perpendicular);
+
+                    /*
                     float dotProduct = Vector3.Dot(Vector2.up, (transform.position - target.position).normalized);
                     float multiplier = dotProduct < 0 ? 1 : -1;
-                    spriteTransform.rotation = Quaternion.Euler(0, 0, multiplier * Vector2.Angle(Vector2.up, (transform.position - target.position).normalized));
+                    spriteTransform.rotation = Quaternion.Euler(0, 0, multiplier * Vector2.Angle(Vector2.up, (transform.position - target.position).normalized));*/
                 }
 
                 if (lastPosition.HasValue)
