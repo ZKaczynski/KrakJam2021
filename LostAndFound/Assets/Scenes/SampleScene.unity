@@ -623,6 +623,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1170132997}
     m_Modifications:
+    - target: {fileID: 5923145739757593393, guid: 5d42648873f641c4d99aa45077fea2da,
+        type: 3}
+      propertyPath: cinemachineVirtualCamera
+      value: 
+      objectReference: {fileID: 1653741881}
     - target: {fileID: 5923145739757593398, guid: 5d42648873f641c4d99aa45077fea2da,
         type: 3}
       propertyPath: m_RootOrder
