@@ -10,6 +10,8 @@ namespace Enemy
         [SerializeField] public bool InLight;
         [SerializeField] private Transform spriteTransform;
 
+        [SerializeField] private AudioClip[] clips= new AudioClip[10];
+
         private Transform target;
         private Vector3? lastPosition;
         private bool lastPositionHasMeaningfulValue;
@@ -37,7 +39,8 @@ namespace Enemy
 
             if (ShouldMove && CanMove)
             {
-                if (!audio.isPlaying) { 
+                if (!audio.isPlaying) {
+                    audio.clip = clips[Random.Range(0, clips.Length)];
                     audio.Play();
                 }
                 if (target != null && HasLineOfSight(target, Color.clear))

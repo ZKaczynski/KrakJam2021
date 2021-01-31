@@ -26,6 +26,9 @@ namespace LevelMechanics
         
         public void Interact()
         {
+            GetComponent<AudioSource>().Play();
+
+            
             ChangePulledState();
         }
 
