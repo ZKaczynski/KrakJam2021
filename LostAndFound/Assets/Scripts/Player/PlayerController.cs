@@ -110,6 +110,10 @@ namespace Player
             {
                 Die();
             }
+
+            if (other.gameObject.CompareTag("Finish")){
+                GameMaster.OnLevelFinished();
+            }
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -153,6 +157,12 @@ namespace Player
             {
                 GameMaster.OnGameFinished();
             }
+        }
+
+        void Throw()
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         }
     }
 }
