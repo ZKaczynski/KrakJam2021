@@ -13,6 +13,7 @@ public class UIController : SceneObject
     
     public void OpenDefeatScreen()
     {
+        Time.timeScale = 0;
         defeatScreen.SetActive(true);
         mainMenuScreen.SetActive(false);
         faderScreen.SetActive(false);
@@ -21,6 +22,7 @@ public class UIController : SceneObject
 
     public void OpenMainMenu()
     {
+        Time.timeScale = 0;
         defeatScreen.SetActive(false);
         mainMenuScreen.SetActive(true);
         faderScreen.SetActive(false);
@@ -29,6 +31,7 @@ public class UIController : SceneObject
 
     public void OpenFader()
     {
+        Time.timeScale = 0;
         defeatScreen.SetActive(false);
         mainMenuScreen.SetActive(false);
         faderScreen.SetActive(true);
@@ -37,6 +40,7 @@ public class UIController : SceneObject
     
     public void OpenVictoryScreen()
     {
+        Time.timeScale = 0;
         defeatScreen.SetActive(false);
         mainMenuScreen.SetActive(false);
         faderScreen.SetActive(false);
