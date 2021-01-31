@@ -10,6 +10,8 @@ namespace Player
         private ItemType currentItem = 0;
         private Dictionary<ItemType, int> items = new Dictionary<ItemType, int>();
 
+        [SerializeField] private  GameObject[] itemsPrefabs = new GameObject[1];
+
         internal void AddItem(ItemType pickUpType)
         {
             if(items.TryGetValue(pickUpType, out int amount))
@@ -22,8 +24,16 @@ namespace Player
             }
         }
 
+        public GameObject GetCurrentItem()
+        {
+            if (currentItem == ItemType.Flare)
+            {
+                return itemsPrefabs[0];
+            }
+            return null;
+        }
 
-        internal bool GetCurrentItem()
+        internal bool HasCurrentItem()
         {
             if(items.TryGetValue(currentItem, out int amount))
             {

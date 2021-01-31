@@ -47,8 +47,9 @@ namespace Player
 
         private void TryToUseCurrentItem()
         {
-            if (inventory.GetCurrentItem())
+            if (inventory.HasCurrentItem())
             {
+                Throw(inventory.GetCurrentItem());
                 Debug.Log("Item used!!");
             }
             else
@@ -159,9 +160,14 @@ namespace Player
             }
         }
 
-        void Throw()
+        void Throw(GameObject objectToThrow)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            GameObject projectileInstance = Instantiate(objectToThrow, transform.position, Quaternion.identity);
+
+            projectileInstance.GetComponent<Projectile>().setTarget(mousePos);
+            
 
         }
     }
