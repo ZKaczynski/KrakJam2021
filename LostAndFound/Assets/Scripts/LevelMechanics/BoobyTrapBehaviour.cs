@@ -43,7 +43,11 @@ namespace LevelMechanics
 
         private bool ShouldEngage()
         {
-            return levers.Any(lever => lever.IsPulled);
+            if (levers == null || levers.All(lever => lever == null))
+            {
+                return true;
+            }
+            return levers.Where(lever => lever != null).Any(lever => lever.IsPulled);
         }
         
         private void Engage(bool state)

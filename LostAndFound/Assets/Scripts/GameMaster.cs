@@ -74,7 +74,7 @@ public class GameMaster : MonoBehaviour
         IsGameFinished = false;
         IsLevelFinished = false;
         CurrentLevel = level;
-
+        
         levelLoader.LoadLevel(level);
     }
 
