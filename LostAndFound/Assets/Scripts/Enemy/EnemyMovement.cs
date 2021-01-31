@@ -16,6 +16,8 @@ namespace Enemy
         private bool ShouldMove => target != null || lastPosition.HasValue;
         private bool CanMove => InLight == false;
 
+        private int lightsCount = 0;
+
         void Start()
         {
             InLight = false;
@@ -63,6 +65,7 @@ namespace Enemy
             {
                 if (HasLineOfSight(potentialTarget.getTarget(), Color.red))
                 {
+                    lightsCount++;
                     InLight = true;
                     target = potentialTarget.getTarget();
                 }
@@ -90,7 +93,11 @@ namespace Enemy
                 if (HasLineOfSight(potentialTarget.getTarget(), Color.green))
                 {
                     target = potentialTarget.getTarget();
-                    InLight = false;
+                    lightsCount--;
+                    if (lightsCount == 0)
+                    {
+                        InLight = false;
+                    }
                 }
             }
         }
