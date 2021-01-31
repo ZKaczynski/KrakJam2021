@@ -21,6 +21,7 @@ namespace UI
         [UsedImplicitly]
         public void OnScreenClosed()
         {
+            Time.timeScale = 1;
             gameObject.SetActive(false);
             onScreenClosed?.Invoke();
         }
