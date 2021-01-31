@@ -8,6 +8,7 @@ namespace Enemy
         [SerializeField] private float speed = 0.5f;
         [SerializeField] private LayerMask layerMask;
         [SerializeField] public bool InLight;
+        [SerializeField] private Transform spriteTransform;
 
         private Transform target;
         private Vector3? lastPosition;
@@ -36,13 +37,17 @@ namespace Enemy
                 if (target != null && HasLineOfSight(target, Color.clear))
                 {
                     lastPosition = target.position;
+
+                    float dotProduct = Vector3.Dot(Vector2.up, (transform.position - target.position).normalized);
+                    float multiplier = dotProduct < 0 ? 1 : -1;
+                    spriteTransform.rotation = Quaternion.Euler(0, 0, multiplier * Vector2.Angle(Vector2.up, (transform.position - target.position).normalized));
                 }
 
                 if (lastPosition.HasValue)
                 {
                     float step = speed * Time.deltaTime;
                     transform.position = Vector2.MoveTowards(transform.position, lastPosition.Value, step);
-                    
+
                     if (Vector2.Distance(lastPosition.Value, transform.position) <= float.Epsilon)
                     {
                         lastPosition = null;
@@ -50,6 +55,7 @@ namespace Enemy
                     }
                 }
             }
+            
         }
         
         private void OnTriggerEnter2D(Collider2D other)
