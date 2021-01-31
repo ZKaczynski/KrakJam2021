@@ -44,19 +44,31 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    public void OnLevelFinished()
+    public void OnVictory()
     {
-        levelLoader.CleanUp();
         IsLevelFinished = true;
+        levelLoader.CleanUp();
+        if (CurrentLevel == levelLoader.LastLevelIndex)
+        {
+            IsGameFinished = true;
+            uiController.OpenVictoryScreen();
+        }
+        else
+        {
+            uiController.OpenFader();
+            StartNextLevel();
+        }
     }
 
-    public void OnGameFinished()
+    public void OnDefeat()
     {
-        OnLevelFinished();
         IsGameFinished = true;
+        IsLevelFinished = true;
+
+        levelLoader.CleanUp();
         uiController.OpenDefeatScreen();
     }
-
+    
     public void StartLevel(int level)
     {
         IsGameFinished = false;
@@ -69,6 +81,11 @@ public class GameMaster : MonoBehaviour
     public void ReloadCurrentLevel()
     {
         StartLevel(CurrentLevel);
+    }
+    
+    public void StartNextLevel()
+    {
+        StartLevel(++CurrentLevel);
     }
     
     private GameMaster()

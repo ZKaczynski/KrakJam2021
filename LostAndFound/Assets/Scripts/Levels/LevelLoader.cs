@@ -5,12 +5,14 @@ using UnityEngine;
 
 namespace Levels
 {
-    public class LevelLoader : MonoBehaviour
+    public class LevelLoader : SceneObject
     {
         [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
         [SerializeField] private List<LevelBehaviour> levels;
 
         [CanBeNull] private LevelBehaviour currentlyLoadedLevel;
+
+        public int LastLevelIndex => levels.Count - 1;
     
         public void LoadLevel(int i)
         {

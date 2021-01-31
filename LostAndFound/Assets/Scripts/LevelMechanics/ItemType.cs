@@ -2,6 +2,6 @@
 {
     public enum ItemType 
     {
-        Flare
+        Flare = 0
     }
 }

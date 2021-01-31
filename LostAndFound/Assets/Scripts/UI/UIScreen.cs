@@ -14,6 +14,7 @@ namespace UI
     
         public void Close(Action onComplete = null)
         {
+            onScreenClosed = onComplete;
             animator.SetTrigger("Close");
         }
 

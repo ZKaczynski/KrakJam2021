@@ -105,15 +105,19 @@ namespace Player
             {
                 interactablesInRange.Add(tripWire);
             }
+<<<<<<< HEAD
             
             if (other.gameObject.CompareTag("Arrow"))
             {
                 Die();
             }
+=======
 
             if (other.gameObject.CompareTag("Finish")){
-                GameMaster.OnVictory();
+                GameMaster.OnLevelFinished();
             }
+
+>>>>>>> 904918948e7d9bdb32be5ee64cf8fe38adf06a73
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -155,7 +159,7 @@ namespace Player
         {
             if (GameMaster.IsGameFinished != true)
             {
-                GameMaster.OnDefeat();
+                GameMaster.OnGameFinished();
             }
         }
 
