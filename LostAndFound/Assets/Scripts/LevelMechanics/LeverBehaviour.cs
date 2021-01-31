@@ -9,6 +9,8 @@ namespace LevelMechanics
     {
         [SerializeField] [CanBeNull] private SpriteRenderer spriteRenderer;
         [SerializeField] private bool startPulled;
+        [SerializeField] private Sprite active;
+        [SerializeField] private Sprite off;
 
         public event Action<LeverBehaviour> LeverStateChangedEvent;
 
@@ -43,7 +45,7 @@ namespace LevelMechanics
             IsPulled = state;
             if (spriteRenderer != null)
             {
-                spriteRenderer.color = IsPulled ? Color.green : Color.yellow;
+                spriteRenderer.sprite = IsPulled ? active : off;
             }
         }
 
