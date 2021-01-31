@@ -9,6 +9,8 @@ namespace LevelMechanics
         [SerializeField] private List<LeverBehaviour> levers; 
         [SerializeField] private Collider2D trapCollider;
         [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private Sprite engaged;
+        [SerializeField] private Sprite disengaged;
         
         public bool IsEngaged { get; private set; }
 
@@ -48,7 +50,12 @@ namespace LevelMechanics
         {
             IsEngaged = state;
             trapCollider.enabled = IsEngaged;
-            spriteRenderer.color = IsEngaged ? Color.red : Color.grey;
+            UpdateGraphics();
+        }
+        
+        private void UpdateGraphics()
+        {
+            spriteRenderer.sprite = IsEngaged ? engaged : disengaged;
         }
     }
 }
