@@ -89,6 +89,8 @@ MonoBehaviour:
   levers: []
   trapCollider: {fileID: 5068611854879687923}
   spriteRenderer: {fileID: 6111510829141014331}
+  engaged: {fileID: 21300000, guid: 452cb463f84c27d44a22f8cabf7e4279, type: 3}
+  disengaged: {fileID: 21300000, guid: d0708254ff8ea4346a7effb7bb0e09cf, type: 3}
 --- !u!1 &6111510829141014330
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6111510829141014330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.39, y: 1.31, z: -3.6743548}
+  m_LocalPosition: {x: -6.779, y: 1.31, z: -3.6743548}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6520259174459085666}
@@ -160,11 +162,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: cce91492e258fb4449ee173ca48b7434, type: 3}
-  m_Color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d0708254ff8ea4346a7effb7bb0e09cf, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 2
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
