@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using LevelMechanics;
 using UnityEngine;
 
@@ -10,7 +11,8 @@ namespace Enemy
         [SerializeField] private float speed = 0.5f;
         [SerializeField] private LayerMask layerMask;
         [SerializeField] public bool InLight;
-        [SerializeField] private Transform spriteTransform;
+        [SerializeField] [ItemCanBeNull] private List<Transform> visibilityCheckMarkers;
+        [SerializeField] private Rigidbody2D rigidbody2D;
 
         [SerializeField] private AudioClip[] clips= new AudioClip[10];
 
@@ -38,7 +40,7 @@ namespace Enemy
             }
 
             UpdateInLightStatus();
-
+            
             if (ShouldMove && CanMove)
             {
                 if (!audio.isPlaying) {
@@ -71,9 +73,9 @@ namespace Enemy
 
         private void UpdateInLightStatus()
         {
-            lightSourcesInRange.RemoveAll(light => light == null);
+            lightSourcesInRange.RemoveAll(x => x == null);
             
-            EnemyTarget potentialTarget = lightSourcesInRange.FirstOrDefault(target => HasLineOfSight(target.getTarget(), Color.clear));
+            EnemyTarget potentialTarget = lightSourcesInRange.FirstOrDefault(x => IsVisibleFrom(visibilityCheckMarkers, x.getTarget(), Color.clear));
             if (potentialTarget != null)
             {
                 InLight = true;
@@ -83,6 +85,8 @@ namespace Enemy
             {
                 InLight = false;
             }
+            
+            rigidbody2D.constraints = InLight ? RigidbodyConstraints2D.FreezeAll : RigidbodyConstraints2D.None;
         }
         
         private void OnTriggerEnter2D(Collider2D other)
@@ -117,17 +121,38 @@ namespace Enemy
             }
         }
 
+        private bool IsVisibleFrom(List<Transform> markers, Transform other, Color colorOfGizmos)
+        {
+            bool isAnyMarkerVisible = false;
+            foreach (var marker in markers)
+            {
+                if (marker == null)
+                {
+                    continue;
+                }
+                
+                Vector3 markerPosition = marker.position;
+                Vector3 targetPosition = other.position;
+
+                float distance = Vector2.Distance(markerPosition, targetPosition);
+                
+                RaycastHit2D hit = Physics2D.Raycast(markerPosition, targetPosition - markerPosition, distance, layerMask);
+                Debug.DrawRay(markerPosition, targetPosition - markerPosition, colorOfGizmos);
+                bool markerVisible = hit.collider == null;
+                isAnyMarkerVisible |= markerVisible;
+
+                if (markerVisible)
+                {
+                    break;
+                }
+            }
+
+            return isAnyMarkerVisible;
+        }
+        
         private bool HasLineOfSight(Transform other, Color colorOfGizmos)
         {
-            Vector3 enemyPosition = transform.position;
-            Vector3 targetPosition = other.position;
-
-            float distance = Vector2.Distance(enemyPosition, targetPosition);
-            RaycastHit2D hit = Physics2D.Raycast(enemyPosition, targetPosition - enemyPosition, distance, layerMask);
-
-            Debug.DrawRay(enemyPosition, targetPosition - enemyPosition, colorOfGizmos);
-
-            return hit.collider == null;
+            return IsVisibleFrom(new List<Transform>{ transform }, other, colorOfGizmos);
         }
 
         private void Die()
